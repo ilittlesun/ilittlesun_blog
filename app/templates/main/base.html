@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	{% if title %}
+	<title>{{title}}</title>
+	{% else %}
+	<title>None</title>
+	{% endif %}
+</head>
+<body>
+	<h2>body</h2>
+	{% block content %}
+	{% endblock %}
+	<h2>endbody</h2>
+</body>
+</html>
