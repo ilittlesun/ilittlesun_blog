@@ -1,10 +1,24 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask
+import os
 
-from .main import main as main_blueprint
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.register_blueprint(main_blueprint, url_prefix='/main')
+
+username = os.environ['MYSQL_USERNAME']
+password = os.environ['MYSQL_PASSWORD']
+host = 'localhost'
+port = '3306'
+db_name = 'users'
+
+# engine = create_engine('mysql+pymysql://%s:%s@%s:%s/%s') %(username, password, host, port, db_name)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://%s:%s@%s:%s/%s' %(username, password, host, port, db_name)
+db = SQLAlchemy(app)
 
 from . import views
+
+from .main import main as main_blueprint
+app.register_blueprint(main_blueprint, url_prefix='/main')
