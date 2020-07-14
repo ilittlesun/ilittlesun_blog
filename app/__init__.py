@@ -7,15 +7,11 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
-username = os.environ['MYSQL_USERNAME']
-password = os.environ['MYSQL_PASSWORD']
-host = 'localhost'
-port = '3306'
-db_name = 'ilittlesun_blog'
+base_dir = os.getcwd()
+print(base_dir)
 
-# engine = create_engine('mysql+pymysql://%s:%s@%s:%s/%s') %(username, password, host, port, db_name)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(base_dir, 'ilittlesun_blog')
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://%s:%s@%s:%s/%s' %(username, password, host, port, db_name)
 db = SQLAlchemy(app)
 
 from . import views
