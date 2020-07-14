@@ -11,7 +11,7 @@ username = os.environ['MYSQL_USERNAME']
 password = os.environ['MYSQL_PASSWORD']
 host = 'localhost'
 port = '3306'
-db_name = 'users'
+db_name = 'ilittlesun_blog'
 
 # engine = create_engine('mysql+pymysql://%s:%s@%s:%s/%s') %(username, password, host, port, db_name)
 
